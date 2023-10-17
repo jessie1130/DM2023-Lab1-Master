@@ -1,4 +1,6 @@
 import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 """
 Helper functions for data mining lab session 2018 Fall Semester
@@ -35,4 +37,17 @@ def tokenize_text(text, remove_stopwords=False):
         for word in nltk.word_tokenize(d, language='english'):
             # filters here
             tokens.append(word)
+    return tokens
+
+def tokenize_text_without_stopwords(text, remove_stopwords=True):
+    """
+    Tokenize text using the nltk library without stopwords
+    """
+    tokens = []
+    stop_words = set(stopwords.words('english'))
+    for d in nltk.sent_tokenize(text, language='english'):
+        for word in nltk.word_tokenize(d, language='english'):
+            # filters here
+            if word.lower() not in stop_words:
+                tokens.append(word)
     return tokens
