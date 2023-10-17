@@ -43,11 +43,11 @@ def tokenize_text_without_stopwords(text, remove_stopwords=True):
     """
     Tokenize text using the nltk library without stopwords
     """
-    tokens = []
+    tokens = ''
     stop_words = set(stopwords.words('english'))
     for d in nltk.sent_tokenize(text, language='english'):
         for word in nltk.word_tokenize(d, language='english'):
             # filters here
             if word.lower() not in stop_words:
-                tokens.append(word)
+                tokens += ' ' + word
     return tokens
